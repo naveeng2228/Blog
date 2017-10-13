@@ -25,8 +25,10 @@ namespace ExcelExport
         public string SEOKeywords { get; set; }
         public string CreatedDate { get; set; }
         public string CreatedTime { get; set; }
+        public int CreatedBy { get; set; }
         public string ModifiedDate { get; set; }
         public string ModifiedTime { get; set; }
+        public int ModifiedBy { get; set; }
 
         private string GetUniqueURL()
         {

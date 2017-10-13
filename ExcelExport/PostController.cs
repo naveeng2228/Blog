@@ -53,10 +53,12 @@ namespace ExcelExport
             _params.Add(new SqlParameter("@SEOKeywords", post.SEOKeywords));
             _params.Add(new SqlParameter("@CreatedDate", post.CreatedDate));
             _params.Add(new SqlParameter("@CreatedTime", post.CreatedTime));
+            _params.Add(new SqlParameter("@CreatedBy", post.CreatedBy));
             _params.Add(new SqlParameter("@ModifiedDate", post.ModifiedDate));
             _params.Add(new SqlParameter("@ModifiedTime", post.ModifiedTime));
+            _params.Add(new SqlParameter("@ModifiedBy", post.ModifiedBy));
             _params.Add(new SqlParameter("@Flag", Flags.SavePost));
-            return ExecuteNonQuery("sp_post", _params) > 0 ? true : false;
+            return ExecuteNonQuery("PROC_POST", _params) > 0 ? true : false;
         }
 
         public bool UpdatePost(Post post)
@@ -73,41 +75,44 @@ namespace ExcelExport
             _params.Add(new SqlParameter("@SEOTitle", post.SEOTitle));
             _params.Add(new SqlParameter("@SEODescription", post.SEODescription));
             _params.Add(new SqlParameter("@SEOKeywords", post.SEOKeywords));
-            _params.Add(new SqlParameter("@CreatedDate", post.CreatedDate));
-            _params.Add(new SqlParameter("@CreatedTime", post.CreatedTime));
             _params.Add(new SqlParameter("@ModifiedDate", post.ModifiedDate));
             _params.Add(new SqlParameter("@ModifiedTime", post.ModifiedTime));
+            _params.Add(new SqlParameter("@ModifiedBy", post.ModifiedBy));
             _params.Add(new SqlParameter("@Flag", Flags.UpdatePost));
-            return ExecuteNonQuery("sp_post", _params) > 0 ? true : false;
+            return ExecuteNonQuery("PROC_POST", _params) > 0 ? true : false;
         }
 
         public bool DeletePost(Post post)
         {
             _params = new List<SqlParameter>();
             _params.Add(new SqlParameter("@PostID", post.PostID));
+            _params.Add(new SqlParameter("@ModifiedDate", post.ModifiedDate));
+            _params.Add(new SqlParameter("@ModifiedTime", post.ModifiedTime));
+            _params.Add(new SqlParameter("@ModifiedBy", post.ModifiedBy));
+            _params.Add(new SqlParameter("@Status", post.Status));
             _params.Add(new SqlParameter("@Flag", Flags.DeletePost));
-            return ExecuteNonQuery("sp_post", _params) > 0 ? true : false;
+            return ExecuteNonQuery("PROC_POST", _params) > 0 ? true : false;
         }
 
         public DataSet GetAllActivePosts()
         {
             _params = new List<SqlParameter>();
             _params.Add(new SqlParameter("@Flag", Flags.GetAllActivePosts));
-            return ExecuteDataSet("sp_post", _params);
+            return ExecuteDataSet("PROC_POST", _params);
         }
 
         public DataSet GetAllPosts()
         {
             _params = new List<SqlParameter>();
             _params.Add(new SqlParameter("@Flag", Flags.GetAllPosts));
-            return ExecuteDataSet("sp_post", _params);
+            return ExecuteDataSet("PROC_POST", _params);
         }
 
         public DataSet GetAllDeletedPosts()
         {
             _params = new List<SqlParameter>();
             _params.Add(new SqlParameter("@Flag", Flags.GetAllDeletedPosts));
-            return ExecuteDataSet("sp_post", _params);
+            return ExecuteDataSet("PROC_POST", _params);
         }
 
         public DataSet GetPostById(string PostID)
@@ -115,7 +120,7 @@ namespace ExcelExport
             _params = new List<SqlParameter>();
             _params.Add(new SqlParameter("@PostID", PostID));
             _params.Add(new SqlParameter("@Flag", Flags.GetPostById));
-            return ExecuteDataSet("sp_post", _params);
+            return ExecuteDataSet("PROC_POST", _params);
         }
 
         public enum Flags

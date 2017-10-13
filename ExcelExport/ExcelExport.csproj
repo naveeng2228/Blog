@@ -8116,6 +8116,7 @@
     <Compile Include="ManagePost.aspx.designer.cs">
       <DependentUpon>ManagePost.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Role.cs" />
     <Compile Include="Roles.aspx.cs">
       <DependentUpon>Roles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8139,6 +8140,7 @@
       <DependentUpon>Posts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolesController.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8154,6 +8156,8 @@
     <Compile Include="SubCategories.aspx.designer.cs">
       <DependentUpon>SubCategories.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
+    <Compile Include="UserController.cs" />
     <Compile Include="Users.aspx.cs">
       <DependentUpon>Users.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
